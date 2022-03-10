@@ -1,5 +1,6 @@
 package ru.hogwarts.school2;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -25,6 +26,7 @@ public class StudentService {
     public Student deleteStudent(long id){
         return studentRepository.getById(id);
     }
+
     public Collection<Student> getAllStudents(){
         return studentRepository.findAll();
     }
@@ -36,6 +38,16 @@ public class StudentService {
     }
     public Collection<Student> findByAgeBetween(int age, int age2){
         return studentRepository.findByAgeBetween(age, age2);
+    }
+    public Integer getStudentsAmount(){
+        return studentRepository.getStudentsAmount();
+    }
 
+    public Integer getAvgAge() {
+       return studentRepository.getAvgAge();
+    }
+
+    public List<Student> getLastFiveStudents() {
+        return studentRepository.getLastFiveStudents();
     }
 }
