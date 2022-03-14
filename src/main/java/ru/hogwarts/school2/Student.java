@@ -3,6 +3,7 @@ package ru.hogwarts.school2;
 import javax.persistence.*;
 import java.util.Objects;
 @Entity
+@Table(name="student")
 public class Student {
     @Id
     @GeneratedValue
@@ -20,7 +21,7 @@ public class Student {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
