@@ -52,5 +52,14 @@ public class FacultyController {
     public List<Faculty> filterByColour(@RequestParam("colour") String colour){
         return facultyService.filterByColour(colour);
     }
+    @GetMapping(path= "longWord")
+    public Faculty findLongFaculty(){
+       return facultyService.findLongFaculty();
+    }
+
+    @GetMapping(path="getNumber")
+    public Integer getNumber(){
+        return facultyService.getNumber();
+    }
 }
 

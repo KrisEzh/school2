@@ -54,4 +54,12 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
+    @GetMapping(path="middleAge")
+    public double findMiddleAge (){
+        return studentService.findMiddleAge();
+    }
+    @GetMapping(path="startsWithV")
+    public List<String> findStudentsStartsWithLetterV(){
+        return studentService.findStudentsStartsWithLetterV();
+    }
 }

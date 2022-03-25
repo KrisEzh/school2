@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 public class FacultyService {
 
@@ -48,5 +50,18 @@ public class FacultyService {
     public Collection<Faculty> findByNameOrColourIgnoreCase(String name, String colour){
         logger.debug("Факультеты по названию и цвету получены");
         return facultyRepository.findByNameOrColourIgnoreCase(name, colour);
+    }
+    public Faculty findLongFaculty(){
+        return facultyRepository.findAll()
+                .stream()
+                .reduce((f1, f2) -> f1.getName().length() >= f2.getName().length() ? f1 : f2)
+                .get();
+    }
+    public Integer getNumber(){
+        int sum = Stream.iterate(1, a -> a +1)
+                .parallel()
+                .limit(1_000_000)
+                .reduce(0, (a, b) -> a + b );
+        return sum;
     }
 }
