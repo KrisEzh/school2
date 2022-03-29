@@ -1,11 +1,12 @@
 package ru.hogwarts.school2;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
@@ -49,5 +50,19 @@ public class StudentService {
 
     public List<Student> getLastFiveStudents() {
         return studentRepository.getLastFiveStudents();
+    }
+
+    public double findMiddleAge(){
+        return studentRepository.findAll()
+                .stream()
+                .mapToInt(Student::getAge).average().getAsDouble();
+    }
+    public List<String> findStudentsStartsWithLetterV(){
+        return studentRepository.findAll()
+                .stream()
+                .filter(student-> student.getName().startsWith("v"))
+                .map((student)->student.getName().toUpperCase())
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
