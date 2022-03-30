@@ -62,4 +62,12 @@ public class StudentController {
     public List<String> findStudentsStartsWithLetterV(){
         return studentService.findStudentsStartsWithLetterV();
     }
+    @GetMapping(path="print")
+    public void printStudents(){
+         studentService.printStudents();
+    }
+    @GetMapping(path="printSynchronized")
+    public void printSynchronized(){
+        studentService.printSynchronizedStudents();
+    }
 }
