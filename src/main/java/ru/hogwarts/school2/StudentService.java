@@ -69,47 +69,44 @@ public class StudentService {
     }
 
     public void run(String name) {
-        studentRepository.findAll();
-            System.out.println(name);
+        System.out.println(name);
     }
 
     public void printStudents() {
-            run("ivan");
-            run("oleg");
+        run("ivan");
+        run("oleg");
 
-            new Thread(() -> {
-                run("vova");
-                run("vlad");
-            }).start();
+        new Thread(() -> {
+            run("vova");
+            run("vlad");
+        }).start();
 
-            new Thread(() -> {
-               run("semen");
-               run("cat");
-            }).start();
-        }
-
-
-    public void runSynchronized(String name) {
-         System.out.println(name);
+        new Thread(() -> {
+            run("semen");
+            run("cat");
+        }).start();
     }
 
 
-    public void printSynchronizedStudents() {
-        synchronized (getAllStudents().stream().sorted()) {
-
-            runSynchronized("ivan");
-            runSynchronized("oleg");
-
-            new Thread(() -> {
-                runSynchronized("vova");
-                runSynchronized("vlad");
-            }).start();
-
-            new Thread(() -> {
-                runSynchronized("semen");
-                runSynchronized("cat");
-            }).start();
+    public void runSynchronized(String name) {
+        synchronized (getAllStudents()) {
+            System.out.println(name);
         }
+    }
+
+    public void printSynchronizedStudents() {
+        runSynchronized("ivan");
+        runSynchronized("oleg");
+
+        new Thread(() -> {
+            runSynchronized("vova");
+            runSynchronized("vlad");
+        }).start();
+
+        new Thread(() -> {
+            runSynchronized("semen");
+            runSynchronized("cat");
+        }).start();
     }
 
 
