@@ -68,44 +68,44 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
-    public void run(String name) {
-        System.out.println(name);
+    public void run(Long id) {
+        System.out.println(studentRepository.getById(id));
     }
 
     public void printStudents() {
-        run("ivan");
-        run("oleg");
+        run(62L);
+        run(63L);
 
         new Thread(() -> {
-            run("vova");
-            run("vlad");
+            run(64L);
+            run(65L);
         }).start();
 
         new Thread(() -> {
-            run("semen");
-            run("cat");
+            run(66L);
+            run(67L);
         }).start();
     }
 
 
-    public void runSynchronized(String name) {
+    public void runSynchronized(Long id) {
         synchronized (getAllStudents()) {
-            System.out.println(name);
+            System.out.println(studentRepository.getById(id));
         }
     }
 
     public void printSynchronizedStudents() {
-        runSynchronized("ivan");
-        runSynchronized("oleg");
+        runSynchronized(62L);
+        runSynchronized(63L);
 
         new Thread(() -> {
-            runSynchronized("vova");
-            runSynchronized("vlad");
+            runSynchronized(64L);
+            runSynchronized(65L);
         }).start();
 
         new Thread(() -> {
-            runSynchronized("semen");
-            runSynchronized("cat");
+            runSynchronized(66L);
+            runSynchronized(67L);
         }).start();
     }
 
